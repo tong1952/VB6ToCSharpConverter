@@ -1,0 +1,4 @@
+﻿Parser warnings for Process.cls
+Date: 2026-05-11 03:21
+
+  Line 283: expected As in Name, got 'PROCESS_NAME'

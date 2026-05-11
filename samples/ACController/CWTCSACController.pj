@@ -1,0 +1,16 @@
+--MKS Project--
+$Revision: 4.20 $
+_mks_uid="vc11C7-5E24F7AD"
+EndOptions
+$(projectdir)/ACControl.Bas a 1.1 
+$(projectdir)/ACController.res a 1.1 
+$(projectdir)/AcousticCommands.cls a 1.1 
+$(projectdir)/Control.frm a 1.1 
+$(projectdir)/Control.frx a 1.1 
+$(projectdir)/Controller.cls a 1.5 
+$(projectdir)/CWTCSACController.exe a 1.5 
+$(projectdir)/CWTCSACController.vbp a 1.5 
+$(projectdir)/CWTCSAcControllerDefaults.csv a 1.3 
+$(projectdir)/Microphone.ico a 1.1 
+$(projectdir)/Process.cls a 1.1 
+$(projectdir)/ReACTLib6.bas a 1.1 

@@ -1,0 +1,16 @@
+--MKS Project--
+$Revision: 1.5 $
+_mks_uid="vc2259-6692206A"
+EndOptions
+$(projectdir)/AcousticCommands.cls a 1.4 
+$(projectdir)/Control.frm a 1.1 
+$(projectdir)/Control.frx a 1.1 
+$(projectdir)/Controller.cls a 1.4 
+$(projectdir)/GACAAWTacControl.Bas a 1.3 
+$(projectdir)/GACAAWTacController.exe a 1.4 
+$(projectdir)/GACAAWTacController.res a 1.2 
+$(projectdir)/GACAAWTacController.vbp a 1.5 
+$(projectdir)/GACAAWTacControllerDefaults.csv a 1.2 
+$(projectdir)/Microphone.ico a 1.1 
+$(projectdir)/Process.cls a 1.1 
+$(projectdir)/ReACTLib6.bas a 1.1 

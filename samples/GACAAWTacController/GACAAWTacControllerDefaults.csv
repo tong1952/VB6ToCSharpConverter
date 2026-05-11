@@ -1,0 +1,6 @@
+Priority,Controller process priority,High,none
+UpdateInterval,Controller Loop Update Interval,.05,sec
+BKConnectAddress,BK Connect Computer IP address,127.0.0.1,none
+BKConnectTimeout,BK Connect Timeout,5,sec
+BKConnectPort,BK Connect comm port,9001,none
+KeepAliveInterval,Time interval to verify BK Connect is available,10,sec

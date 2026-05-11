@@ -1,0 +1,12 @@
+$(projectdir)/AcousticCommands.cls a0cea948 34d3 67b64c53 1.4
+$(projectdir)/Control.frm 89a3e4f6 11f7 668e031e 1.1
+$(projectdir)/Control.frx fc7b4093 442 668e031e 1.1
+$(projectdir)/Controller.cls 93beba29 1167b 67b64c53 1.4
+$(projectdir)/GACAAWTacControl.Bas 9b576557 2657 673c1ab7 1.3
+$(projectdir)/GACAAWTacController.exe f768eb7e 3e000 67b64c4e 1.4
+$(projectdir)/GACAAWTacController.res 733ed8b8 dcc 66bf9dab 1.2
+$(projectdir)/GACAAWTacController.vbp 95a644cf d85 67be691b 1.5
+$(projectdir)/GACAAWTacControllerDefaults.csv 6652c71 14b 66c37812 1.2
+$(projectdir)/Microphone.ico e1b85b5a 436 5e24f7f4 1.1
+$(projectdir)/Process.cls 2a9cc652 369b 668e031f 1.1
+$(projectdir)/ReACTLib6.bas 809204ee a55 668e01a7 1.1

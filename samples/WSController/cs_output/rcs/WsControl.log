@@ -1,0 +1,9 @@
+﻿Parser warnings for WsControl.Bas
+Date: 2026-05-11 03:43
+
+  Line 591: expected Equals, got 'tuning'
+  Line 591: expected To in For, got 'at'
+  Line 627: expected Equals, got '
+'
+  Line 627: expected To in For, got '
+'

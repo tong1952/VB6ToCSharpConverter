@@ -1,0 +1,66 @@
+head 1.3;
+branch ;
+access ;
+symbols CD%204%2E00%2E0021:1.3 CD%204%2E00%2E0020:1.3 CD%204%2E00%2E0019:1.3
+        4%2E00%2E0013:1.3 4%2E00%2E0002:1.2 4%2E00%2E0001:1.1;
+locks ; strict;
+comment @@;
+
+
+1.3
+date 2020.01.20.05.01.32; author Kavanagh; state Develop;
+branches ;
+next 1.2;
+
+1.2
+date 2020.01.20.02.12.48; author Kavanagh; state Develop;
+branches ;
+next 1.1;
+
+1.1
+date 2020.01.20.00.44.03; author Kavanagh; state Develop;
+branches ;
+next ;
+
+ext
+@project Z:/Client Facilities/CAERI/Source Code/Applications/ACController/CWTCSACController.pj;
+@
+
+desc
+@@
+
+
+1.3
+log
+@As tested at AAWT@
+text
+@Priority,Controller process priority,High,none
+UpdateInterval,Controller Loop Update Interval,.05,sec
+GFAITCPIPAddress,GFAI System Computer IP address,192.168.8.190,none
+GFAITCPIPConnectTimeout,GFAI System TCP/IP Connect Timeout,5,sec
+GFAITCPIPPort,GFAI System TCP/IP comm port,8888,none
+KeepAliveInterval,Time interval between KeepAlive comm messages,0,sec
+SendParsIntervalMax,Max time between sending the wind tunnel parameter values,120,sec
+SendParsUseTargets,If True then send windspeed and yas angle target values instead of actual values,True,
+GetControlTimeout,Max time to wait for getting remote control from the GFAI system,10,sec
+SendParsWTCSOnly,If True then send WT parameter values only when under WTCS control,True,
+@
+
+
+1.2
+log
+@@
+text
+@d10 1
+@
+
+
+1.1
+log
+@Initial revision@
+text
+@d3 3
+a5 2
+GFAITCPIPAddress,GFAI System Computer IP address,192.168.1.30,none
+GFAITCPIPPort,GFAI System TCP/IP comm port,49191,none
+@

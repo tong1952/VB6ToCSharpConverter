@@ -1,0 +1,119 @@
+head 1.5;
+branch ;
+access ;
+symbols 4%2E00%2E0020a:1.5 4%2E00%2E0020:1.4 4%2E00%2E0019:1.3
+        4%2E00%2E0016:1.2;
+locks ;
+comment @@;
+
+
+1.5
+date 2026.04.07.22.09.27; author Ryc; state Develop;
+branches ;
+next 1.4;
+
+1.4
+date 2025.02.21.19.26.35; author Ryc; state Develop;
+branches ;
+next 1.3;
+
+1.3
+date 2025.02.05.17.35.30; author Ryc; state Develop;
+branches ;
+next 1.2;
+
+1.2
+date 2024.11.10.20.24.19; author Ryc; state Develop;
+branches ;
+next 1.1;
+
+1.1
+date 2024.07.13.06.36.26; author Ryc; state Develop;
+branches ;
+next ;
+
+ext
+@ProjectArchive;
+project Z:/Client Facilities/GAC AAWT/Source Code/GAC AAWT.pj;
+@
+
+desc
+@@
+
+
+1.5
+log
+@Now referencing newer ControlLib4.dll@
+text
+@--MKS Project--
+$Revision: 1.4 $
+_mks_uid="vc2259-6692206A"
+EndOptions
+$(projectdir)/AcousticCommands.cls a 1.4 
+$(projectdir)/Control.frm a 1.1 
+$(projectdir)/Control.frx a 1.1 
+$(projectdir)/Controller.cls a 1.4 
+$(projectdir)/GACAAWTacControl.Bas a 1.3 
+$(projectdir)/GACAAWTacController.exe a 1.4 
+$(projectdir)/GACAAWTacController.res a 1.2 
+$(projectdir)/GACAAWTacController.vbp a 1.5 
+$(projectdir)/GACAAWTacControllerDefaults.csv a 1.2 
+$(projectdir)/Microphone.ico a 1.1 
+$(projectdir)/Process.cls a 1.1 
+$(projectdir)/ReACTLib6.bas a 1.1 
+@
+
+
+1.4
+log
+@mobjStatuses.Reset moved from Commands class to Controller class event mobjCommands_CommandAdded@
+text
+@d12 1
+a12 1
+$(projectdir)/GACAAWTacController.vbp a 1.4 
+@
+
+
+1.3
+log
+@Removed trailing "/" from URLs. Added command SetAcousticIP.@
+text
+@d5 1
+a5 1
+$(projectdir)/AcousticCommands.cls a 1.3 
+d8 1
+a8 1
+$(projectdir)/Controller.cls a 1.3 
+d10 1
+a10 1
+$(projectdir)/GACAAWTacController.exe a 1.3 
+d12 1
+a12 1
+$(projectdir)/GACAAWTacController.vbp a 1.3 
+@
+
+
+1.2
+log
+@Changed to BK Connect protocol via HTTP.@
+text
+@d5 1
+a5 1
+$(projectdir)/AcousticCommands.cls a 1.2 
+d8 3
+a10 3
+$(projectdir)/Controller.cls a 1.2 
+$(projectdir)/GACAAWTacControl.Bas a 1.2 
+$(projectdir)/GACAAWTacController.exe a 1.2 
+d12 1
+a12 1
+$(projectdir)/GACAAWTacController.vbp a 1.2 
+@
+
+
+1.1
+log
+@Initial revision@
+text
+@d5 12
+@

@@ -1,0 +1,10 @@
+Priority,Controller process priority,High,none
+UpdateInterval,Controller Loop Update Interval,.05,sec
+GFAITCPIPAddress,GFAI System Computer IP address,192.168.8.190,none
+GFAITCPIPConnectTimeout,GFAI System TCP/IP Connect Timeout,5,sec
+GFAITCPIPPort,GFAI System TCP/IP comm port,8888,none
+KeepAliveInterval,Time interval between KeepAlive comm messages,0,sec
+SendParsIntervalMax,Max time between sending the wind tunnel parameter values,120,sec
+SendParsUseTargets,If True then send windspeed and yas angle target values instead of actual values,True,
+GetControlTimeout,Max time to wait for getting remote control from the GFAI system,10,sec
+SendParsWTCSOnly,If True then send WT parameter values only when under WTCS control,True,

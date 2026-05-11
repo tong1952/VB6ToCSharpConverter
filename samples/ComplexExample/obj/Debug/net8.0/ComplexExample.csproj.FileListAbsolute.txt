@@ -1,0 +1,14 @@
+C:\Users\peter\VB6ToCSharpConverter\samples\ComplexExample\bin\Debug\net8.0\ComplexExample.exe
+C:\Users\peter\VB6ToCSharpConverter\samples\ComplexExample\bin\Debug\net8.0\ComplexExample.deps.json
+C:\Users\peter\VB6ToCSharpConverter\samples\ComplexExample\bin\Debug\net8.0\ComplexExample.runtimeconfig.json
+C:\Users\peter\VB6ToCSharpConverter\samples\ComplexExample\bin\Debug\net8.0\ComplexExample.dll
+C:\Users\peter\VB6ToCSharpConverter\samples\ComplexExample\bin\Debug\net8.0\ComplexExample.pdb
+C:\Users\peter\VB6ToCSharpConverter\samples\ComplexExample\obj\Debug\net8.0\ComplexExample.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\peter\VB6ToCSharpConverter\samples\ComplexExample\obj\Debug\net8.0\ComplexExample.AssemblyInfoInputs.cache
+C:\Users\peter\VB6ToCSharpConverter\samples\ComplexExample\obj\Debug\net8.0\ComplexExample.AssemblyInfo.cs
+C:\Users\peter\VB6ToCSharpConverter\samples\ComplexExample\obj\Debug\net8.0\ComplexExample.csproj.CoreCompileInputs.cache
+C:\Users\peter\VB6ToCSharpConverter\samples\ComplexExample\obj\Debug\net8.0\ComplexExample.dll
+C:\Users\peter\VB6ToCSharpConverter\samples\ComplexExample\obj\Debug\net8.0\refint\ComplexExample.dll
+C:\Users\peter\VB6ToCSharpConverter\samples\ComplexExample\obj\Debug\net8.0\ComplexExample.pdb
+C:\Users\peter\VB6ToCSharpConverter\samples\ComplexExample\obj\Debug\net8.0\ComplexExample.genruntimeconfig.cache
+C:\Users\peter\VB6ToCSharpConverter\samples\ComplexExample\obj\Debug\net8.0\ref\ComplexExample.dll

@@ -1,0 +1,54 @@
+head 1.2;
+branch ;
+access ;
+symbols 4%2E00%2E0016:1.2 4%2E00%2E0005:1.1;
+locks ; strict;
+comment @@;
+
+
+1.2
+date 2024.08.19.16.51.30; author Ryc; state Develop;
+branches ;
+next 1.1;
+
+1.1
+date 2024.07.10.04.09.50; author Ryc; state Develop;
+branches ;
+next ;
+
+ext
+@project Z:/Client Facilities/GAC AAWT/Source Code/Applications/GACAAWTacController/GACAAWTacController.pj;
+@
+
+desc
+@@
+
+
+1.2
+log
+@Changed to BK Connect protocol via HTTP.@
+text
+@Priority,Controller process priority,High,none
+UpdateInterval,Controller Loop Update Interval,.05,sec
+BKConnectAddress,BK Connect Computer IP address,127.0.0.1,none
+BKConnectTimeout,BK Connect Timeout,5,sec
+BKConnectPort,BK Connect comm port,9001,none
+KeepAliveInterval,Time interval to verify BK Connect is available,10,sec
+@
+
+
+1.1
+log
+@Initial revision@
+text
+@d3 4
+a6 8
+GFAITCPIPAddress,GFAI System Computer IP address,127.0.0.1,none
+GFAITCPIPConnectTimeout,GFAI System TCP/IP Connect Timeout,5,sec
+GFAITCPIPPort,GFAI System TCP/IP comm port,8888,none
+KeepAliveInterval,Time interval between KeepAlive comm messages,0,sec
+SendParsIntervalMax,Max time between sending the wind tunnel parameter values,120,sec
+SendParsUseTargets,If True then send windspeed and yas angle target values instead of actual values,True,
+GetControlTimeout,Max time to wait for getting remote control from the GFAI system,10,sec
+SendParsFCASOnly,If True then send WT parameter values only when under FCAS control,True,
+@

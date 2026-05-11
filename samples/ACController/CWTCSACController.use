@@ -1,0 +1,12 @@
+$(projectdir)/ACControl.Bas a2b6ff02 25b1 5e24f7f3 1.1
+$(projectdir)/ACController.res 8f7064ed d94 5e24f7f3 1.1
+$(projectdir)/AcousticCommands.cls d666b78 35ee 5e24f7f3 1.1
+$(projectdir)/Control.frm 94833a2f 11be 5e24f7f3 1.1
+$(projectdir)/Control.frx fc7b4093 442 5e24f7f3 1.1
+$(projectdir)/Controller.cls 9eb240ba f3c8 660d5508 1.5
+$(projectdir)/CWTCSACController.exe 7d6c226b 41000 660d5508 1.5
+$(projectdir)/CWTCSACController.vbp 84be0ec2 d7b 660d5508 1.5
+$(projectdir)/CWTCSAcControllerDefaults.csv 78cc0887 2e4 660d5508 1.3
+$(projectdir)/Microphone.ico e1b85b5a 436 5e24f7f4 1.1
+$(projectdir)/Process.cls 7b8464a0 34ef 5e24f7f4 1.1
+$(projectdir)/ReACTLib6.bas 133ea70c a51 5e24f7f4 1.1

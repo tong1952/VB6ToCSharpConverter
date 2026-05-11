@@ -1,0 +1,20 @@
+
+VER,4.1.1.0,12/12/2017 11:36:10,,WSPIDTuning test.par,4
+INFO,,,,,
+PAR,WSFF,Windspeed FF Norm Fanspeed After LL,norm,SYN,Windspeed Tuning,-1, 1,0.000, 0,,,,Control,Timer
+PAR,WSFFRaw,Windspeed FF Norm Fanspeed,norm,SYN,Windspeed Tuning,-1, 1,0.000, 0,,,,Control,Timer
+PAR,WSPIDDerivEffect,Windspeed PID Derivative Effect,norm,SYN,Windspeed Tuning,-10, 10,0.000, 0,,,,Control,Timer
+PAR,WSPIDEffect,Windspeed PID Effect,norm,SYN,Windspeed Tuning,-10, 10,0.000, 0,,,,Control,Timer
+PAR,WSPIDError,Windspeed PID Error Value,norm,SYN,Windspeed Tuning,-10, 10,0.000, 0,,,,Control,Timer
+PAR,WSPIDErrorRate,Windspeed PID Error Ramp Rate,norm/s,SYN,Windspeed Tuning,-10, 10,0.000, 0,,,,Control,Timer
+PAR,WSPIDIntEffect,Windspeed PID Integral Effect,norm,SYN,Windspeed Tuning,-10, 10,0.000, 0,,,,Control,Timer
+PAR,WSPIDKpEffect,Windspeed PID Gain Effect,norm,SYN,Windspeed Tuning,-10, 10,0.000, 0,,,,Control,Timer
+[Control]
+PAR,WSPIDIntEffect,,,,0
+PAR,WSPIDDerivEffect,,,,0
+PAR,WSPIDEffect,,,,0
+PAR,WSFFRaw,,,,0
+PAR,WSFF,,,,0
+PAR,WSPIDError,,,,0
+PAR,WSPIDErrorRate,,,,0
+[Data]

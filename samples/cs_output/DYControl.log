@@ -1,0 +1,5 @@
+﻿Parser warnings for DYControl.Bas
+Date: 2026-05-11 03:14
+
+  Line 819: expected RightParen, got '.'
+  Line 889: expected RightParen, got '.'

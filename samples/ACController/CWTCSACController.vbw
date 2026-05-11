@@ -1,0 +1,6 @@
+modReACTLib = 0, 0, 0, 0, C
+Process = 0, 0, 0, 0, C
+frmControl = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+AcousticCommands = 78, 78, 1534, 708, 
+modACControl = 86, 44, 1098, 874, C
+Controller = 35, 114, 1683, 804, 

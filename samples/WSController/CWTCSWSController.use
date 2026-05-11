@@ -1,0 +1,13 @@
+$(projectdir)/Control.frm 1a729ac 7c8 5cc270a3 1.2
+$(projectdir)/Control.frx 9ceb14ae 442 5cc270a3 1.2
+$(projectdir)/Controller.cls b6c7e52d 2eb56 660316ae 1.25
+$(projectdir)/CWTCSWsController.exe d9e95a7b 94000 660316ae 1.24
+$(projectdir)/CWTCSWSController.vbp 100137f0 f2e 660316ae 1.25
+$(projectdir)/CWTCSWSControllerDefaults.csv 3e11674d 536f 660316ae 1.10
+$(projectdir)/Process.cls 8fb2196e 35d1 5cc270a4 1.2
+$(projectdir)/Windspeed.ico 81280f67 436 5cc270a4 1.2
+$(projectdir)/WindspeedCommandsAAWT.cls cef449ce f40 5d7967cc 1.5
+$(projectdir)/WindspeedCommandsCWT.cls 20f726ca 145e 5dd5cbde 1.7
+$(projectdir)/WsCommands.cls fbadcec1 a198 5dd5cbdf 1.9
+$(projectdir)/WsControl.Bas fc92f3e3 3039 5dd5cbdf 1.13
+$(projectdir)/wsController.res e73ae219 19e8 5dd5cbdf 1.10

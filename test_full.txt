@@ -1,0 +1,46 @@
+  ACController\ACControl.Bas... lex... (1450 tokens) parse... transform... done
+  ACController\AcousticCommands.cls... lex... (2395 tokens) parse... transform... done
+  ACController\Control.frm... lex... (733 tokens) parse... transform... done
+  ACController\Controller.cls... lex... (8773 tokens) parse... transform... done
+Controller.cls: 2 TODO(s), 0 warning(s)
+  // TODO: Static local 'vLastErrorMessageTime' — move to a class-level static field
+  // TODO: Static local 'ReEntered' — move to a class-level static field
+  ACController\Process.cls... lex... (2187 tokens) parse... transform... done
+  ACController\rcs\ACControl.Bas... lex... (1547 tokens) parse... transform... done
+  ACController\rcs\AcousticCommands.cls... lex... (2492 tokens) parse... transform... done
+  ACController\rcs\Control.frm... lex... (830 tokens) parse... transform... done
+  ACController\rcs\Controller.cls... lex... (9260 tokens) parse... transform... done
+Controller.cls: 2 TODO(s), 0 warning(s)
+  // TODO: Static local 'vLastErrorMessageTime' — move to a class-level static field
+  // TODO: Static local 'ReEntered' — move to a class-level static field
+  ACController\rcs\Process.cls... lex... (2284 tokens) parse... transform... done
+  ACController\rcs\ReACTLib6.bas... lex... (456 tokens) parse... transform... done
+  ACController\ReACTLib6.bas... lex... (359 tokens) parse... transform... done
+  Calculator.bas... lex... (466 tokens) parse... transform... done
+Calculator.bas: 1 TODO(s), 0 warning(s)
+  // TODO: Static local 'count' — move to a class-level static field
+  Control.frm... lex... (749 tokens) parse... transform... done
+  Controller.cls... lex... (15287 tokens) parse... transform... done
+Controller.cls: 2 TODO(s), 0 warning(s)
+  // TODO: Static local 'bInitialized' — move to a class-level static field
+  // TODO: Static local 'ReEntered' — move to a class-level static field
+  DYControl.Bas... lex... (4705 tokens) parse... transform... done
+  ErrorHandling.bas... lex... (273 tokens) parse... transform... done
+  ETL2Simulator.bas... lex... (361 tokens) parse... transform... done
+  FileOps.bas... lex... (274 tokens) parse... transform... done
+  Filter1.cls... lex... (192 tokens) parse... transform... done
+  GACAAWTacController\AcousticCommands.cls... lex... (2190 tokens) parse... transform... done
+  GACAAWTacController\Control.frm... lex... (749 tokens) parse... transform... done
+  GACAAWTacController\Controller.cls... lex... (8458 tokens) parse... transform... done
+Controller.cls: 2 TODO(s), 0 warning(s)
+  // TODO: Static local 'ReEntered' — move to a class-level static field
+  // TODO: Static local 'vLastErrorMessageTime' — move to a class-level static field
+  GACAAWTacController\GACAAWTacControl.Bas... lex... (1443 tokens) parse... transform... done
+  GACAAWTacController\Process.cls... lex... (2302 tokens) parse... transform... done
+  GACAAWTacController\rcs\AcousticCommands.cls... lex... (3487 tokens) parse... transform... done
+  GACAAWTacController\rcs\Control.frm... lex... (828 tokens) parse... transform... done
+  GACAAWTacController\rcs\Controller.cls... lex... (12414 tokens) parse... transform... done
+Controller.cls: 2 TODO(s), 0 warning(s)
+  // TODO: Static local 'ReEntered' — move to a class-level static field
+  // TODO: Static local 'vLastErrorMessageTime' — move to a class-level static field
+  GACAAWTacController\rcs\GACAAWTacControl.Bas... lex... (1769 tokens) parse... 

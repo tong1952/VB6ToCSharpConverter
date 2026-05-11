@@ -1,0 +1,282 @@
+Priority,Controller process priority,High,none
+UpdateInterval,Update interval,.05,sec
+MFPermComponents,List of inputs and their fault values that make up MFPerm,,n/a
+SlowFilterDelayTime,Delay before engaging the slow filter,45,seconds
+TrackingFilterTC,Time constant for filtering WS Tracking input par,.05,seconds
+OutputFilterEnable,If true then filter the output (fanspeed setpoint) using OutputFilterTC,False,none
+OutputFilterTC,Controller output (fanspeed) filter time constant,.2,seconds
+MainFanTimeout,Start mainfan time out,55,sec
+MainFanReadyDelay,Pause after drive starts before rpm,10,sec
+MainFanAuxTimeout,Start aux time out period,55,sec
+MainFanAuxPause,Pause after aux before starting drive,5,seconds
+MainFanAuxAutoOff,Time that Auxiliaries continue to run after the fan has been turned off. 0=Dont auto stop,10,min
+MainFanRestartTime,Minimum time between fan restarts (time for converters to discharge),300,sec
+ResetTime,Time to hold the Reset Faults command pulse, 2, seconds
+ResetAuto,If True then also reset fan faults when the main ResetFaults command is used,True,
+IdleTimeout,Idle city system timeout,60,seconds
+SuspendTimeout,Max time to suspend control,15,sec
+CloseTimeLargeFilterTC,Filter TC for ramp rate when close (Large nozzle),1,sec
+CloseTimeLargeWSRate,Ws ramp rate to use when close to target (Large nozzle),1,kph/sec
+CloseTimeSmallFilterTC,Filter TC for ramp rate when close (small),1,sec
+CloseTimeSmallWSRate,Ws ramp rate to use when close to target (small),1,kph/sec
+CloseTimeLargeNum,Number of close times in table lookup (Large nozzle),3,
+CloseTimeLarge01Speed,Close time table lookup point - Speed (Large nozzle),20,kph
+CloseTimeLarge01Time,Close time table lookup output point - Time (sec),2.5,sec
+CloseTimeLarge02Speed,Close time table lookup point - Speed (Large nozzle),50,kph
+CloseTimeLarge02Time,Close time table lookup output point - Time (sec),2.0,sec
+CloseTimeLarge03Speed,Close time table lookup point - Speed (Large nozzle),80,kph
+CloseTimeLarge03Time,Close time table lookup output point - Time (sec),1.5,sec
+CloseTimeSmallNum,Number of close times in table lookup (Small),3,
+CloseTimeSmall01Speed,Close time table lookup point - Speed (Small),20,kph
+CloseTimeSmall01Time,Close time table lookup output point - Time (sec),1.5,sec
+CloseTimeSmall02Speed,Close time table lookup point - Speed (Small),80,kph
+CloseTimeSmall02Time,Close time table lookup output point - Time (sec),1.5,sec
+CloseTimeSmall03Speed,Close time table lookup point - Speed (Small),100,kph
+CloseTimeSmall03Time,Close time table lookup output point - Time (sec),1.5,sec
+CloseTimeMediumNum,Number of close times in table lookup (std),3,
+CloseTimeMedium01Time,Close time table lookup output point - Time (sec),2.5,sec
+CloseTimeMedium01Speed,Close time table lookup point - Speed (std),20,kph
+CloseTimeMedium02Time,Close time table lookup output point - Time (sec),2,sec
+CloseTimeMedium02Speed,Close time table lookup point - Speed (std),50,kph
+CloseTimeMedium03Time,Close time table lookup output point - Time (sec),1.5,sec
+CloseTimeMedium03Speed,Close time table lookup point - Speed (std),80,kph
+CloseTimeMediumFilterTC,Filter TC for ramp rate when close (std),1,sec
+CloseTimeMediumWSRate,Ws ramp rate to use when close to target (std),1,kph/sec
+DeltaPFilterEnable,If True then filter the measured Delta P value when calculating windspeed,True,none
+DeltaPFilterType,"DeltaP filter for Windspeed: 0 = norm, 1 = rolling average, 2=4th Order Butterworth",0,"0, 1 or 2"
+DeltaPFilterMin,Minimum Windspeed Filter time Constant,.01,seconds
+DeltaPFilterMax,Maximum Windspeed Filter time Constant,10,seconds
+DeltaPFilterSlowError,WS error value to start slow filter,1,kph
+DeltaPFilterLargeBase,Large Nozzle base fil tc (or avg time),3,sec
+DeltaPFilterLargeAdjust,Adj filter time const for large nozzle,0,sec / unit
+DeltaPFilterLargeFast,Fast windspeed filter time const,.5,sec
+DeltaPFilterSmallBase,Small Nozzle base fil tc (or avg time),3,sec
+DeltaPFilterSmallAdjust,Adj filter time const for small nozzle,0,sec / unit
+DeltaPFilterSmallFast,Fast windspeed filter time const (small),.2,sec
+DeltaPFilterMediumBase,Medium Nozzle base fil tc (or avg time),3,sec
+DeltaPFilterMediumAdjust,Adj filter time const for Medium nozzle,0,sec / unit
+DeltaPFilterMediumFast,Fast windspeed filter time const (Medium),.2,sec
+DeltaPControlFilterLargeBase,Base control filter value (Large nozzle),.1,sec
+DeltaPControlFilterLargeAdjust,Adjust control filter value (Large nozzle),0,sec/kph/kph
+DeltaPControlFilterLargeMin,Minimum control filter (Large nozzle),.1,sec
+DeltaPControlFilterLargeMax,Maximum control filter (Large nozzle),1,sec
+DeltaPControlFilterMediumBase,Base control filter value (Medium nozzle),.1,sec
+DeltaPControlFilterMediumAdjust,Adjust control filter value (Medium nozzle),0,sec/kph/kph
+DeltaPControlFilterMediumMin,Minimum control filter (Medium nozzle),.1,sec
+DeltaPControlFilterMediumMax,Maximum control filter (Medium nozzle),1,sec
+DeltaPControlFilterSmallBase,Base control filter value (small nozzle),.1,sec
+DeltaPControlFilterSmallAdjust,Adjust control filter value (small nozzle),0,sec/kph/kph
+DeltaPControlFilterSmallMin,Minimum control filter (small nozzle),.1,sec
+DeltaPControlFilterSmallMax,Maximum control filter (small nozzle),1,sec
+FFGain,Normalized feed forward gain,1,none
+FFLag,Feed forward lag coefficient,3,sec
+FFLagTrack,Feed forward lag coefficient (tracking),.5,sec
+FFLead,Feed forward lead coefficient,4,sec
+FFLeadTrack,Feed forward lead coefficient (tracking),1,sec
+FFLargeFanspeed,Nom fanspeed for large nozzle,595,rpm
+FFLargeWindspeed,Windspeed at FFLargeFanspeed for large nozzle,120,kph
+FFMediumFanspeed,Nom fanspeed for medium nozzle,595,rpm
+FFMediumWindspeed,Windspeed at FFMediumFanspeed for medium nozzle,150,kph
+FFSmallFanspeed,Nom fanspeed for small nozzle,595,rpm
+FFSmallWindspeed,Windspeed at FFSmallFanspeed for small nozzle,200,kph
+FanspeedMin,Minimum fan speed set point,-300,rpm
+FanspeedMaxLarge,Max allowable fanspeed for Large nozzle,595,rpm
+FanspeedMaxMedium,Max allowable fanspeed for Medium nozzle,595,rpm
+FanspeedMaxSmall,Max allowable fanspeed for small nozzle,595,rpm
+FanspeedRampMin,Minimum fan speed ramp rate,.001,rpm/sec
+FanspeedRampMax,Maximum fan speed ramp rate,55,rpm/sec
+FanspeedRampMaxTrack,Maximum fan speed ramp rate in track mod,55,rpm/sec
+FanspeedRampDefault,Default fan speed ramp rate,35,rpm/sec
+FanspeedMaxPrep,Maximum fan speed allowed when in Preparation mode,23,rpm
+FanspeedMaxStab,Maximum fan speed allowed when in Stabilization mode,23,rpm
+WindspeedMin,Minimum windspeed set point,-20,kph
+WindspeedMaxLarge,Max allowable windspeed for Large nozzle,120,kph
+WindspeedMaxMedium,Max allowable windspeed for Medium nozzle,150,kph
+WindspeedMaxSmall,Max allowable windspeed for small nozzle,200,kph
+WindspeedRampMin,Minimum wind speed ramp rate,.01,kph/sec
+WindspeedRampMax,Maximum wind speed ramp rate,15,kph/sec
+WindspeedRampDefault,Default wind speed ramp rate,8,kph/sec
+WindspeedMaxPrep,Maximum wind speed allowed when in Preparation mode,30,kph
+WindspeedMaxStab,Maximum wind speed allowed when in Stabilization mode,30,kph
+HeadwindMax,Maxmum windspeed tracking bias,40,kph
+HeadwindMin,Minimum allowable windspeed tracking bias,-40,kph
+FanspeedMonLimit,Fanspeed monitoring error band,5,rpm
+FanspeedMonFiltTC,Fanspeed Monitor Filter Time Constant,3,sec
+FanspeedMonPeriod,Fanspeed monitoring Period,5,sec
+WindspeedMonLimit,Windspeed Monitoring error band,.5,kph
+WindspeedMonFiltTC,Windspeed Monitoring filter time const,3,sec
+WindspeedMonPeriod,Windspeed Monitoring Period,10,sec
+PIDIntegralMax,Maximum normalized integrator output,.15,none
+PIDIntegralMin,Minimum normalized integrator output,-.15,none
+PIDOutputMax,Maximum feedback controller output,.3,none
+PIDOutputMin,Minimum feedback controller output,-.3,none
+PIDDerivFilterTC,PID derivative filter time constant,2,none
+PIDErrorMax,Error limit for PID (prevents windup),6,kph
+PIDWindspeedMin,Minimum windspeed for feedback ctl,4,kph
+PIDGainLargeBase,Kp coeff 0 for Large nozzle,.45,normalized
+PIDGainLargeAdjust,Kp coeff 1 for Large nozzle,0,unit / unit
+PIDGainLargeTrackBase,Kp coeff 0 for Large nozzle (tracking),.45,normalized
+PIDGainLargeTrackAdjust,Kp coeff 1 for Large nozzle (tracking),0,unit / unit
+PIDGainLargeMin,Minimum PID Gain (normalized),.2,none
+PIDGainLargeMax,Maximum PID Gain (normalized),.9,none
+PIDDerivLargeBase,Deriv time coeff 0 for Large nozzle,.3,sec
+PIDDerivLargeAdjust,Deriv time coeff 1 for Large nozzle,0,sec
+PIDDerivLargeTrackBase,Deriv time coeff 0 for Large nozzle (tracking),1,sec
+PIDDerivLargeTrackAdjust,Deriv time coeff 1 for Large nozzle (tracking),0,sec
+PIDDerivLargeMin,Min deriv time coeff - Large nozzle,0,sec
+PIDDerivLargeMax,Max deriv time coeff - Large nozzle,5,sec
+PIDIntegralLargeBase,Integral time coeff 0 for Large nozzle,1.3,sec
+PIDIntegralLargeAdjust,Integral time coeff 1 for Large nozzle,0,sec / unit
+PIDIntegralLargeTrackBase,Integral time coeff 0 for Large nozzle (tracking),1.5,sec
+PIDIntegralLargeTrackAdjust,Integral time coeff 1 for Large nozzle (tracking),0,sec / unit
+PIDIntegralLargeMin,Min integral time coeff - Large nozzle,.75,sec
+PIDIntegralLargeMax,Max integral time coeff - Large nozzle,1000,sec
+PIDGainMediumBase,Kp coeff 0 for Medium nozzle,.45,normalized
+PIDGainMediumAdjust,Kp coeff 1 for Medium nozzle,0,unit / unit
+PIDGainMediumTrackBase,Kp coeff 0 for Medium nozzle (tracking),.45,normalized
+PIDGainMediumTrackAdjust,Kp coeff 1 for Medium nozzle (tracking),0,unit / unit
+PIDGainMediumMin,Minimum PID Gain (normalized),.2,none
+PIDGainMediumMax,Maximum PID Gain (normalized),.9,none
+PIDDerivMediumBase,Deriv time coeff 0 for Medium nozzle,.3,sec
+PIDDerivMediumAdjust,Deriv time coeff 1 for Medium nozzle,0,sec
+PIDDerivMediumTrackBase,Deriv time coeff 0 for Medium nozzle (tracking),1,sec
+PIDDerivMediumTrackAdjust,Deriv time coeff 1 for Medium nozzle (tracking),0,sec
+PIDDerivMediumMin,Min deriv time coeff - Medium nozzle,0,sec
+PIDDerivMediumMax,Max deriv time coeff - Medium nozzle,5,sec
+PIDIntegralMediumBase,Integral time coeff 0 for Medium nozzle,1.3,sec
+PIDIntegralMediumAdjust,Integral time coeff 1 for Medium nozzle,0,sec / unit
+PIDIntegralMediumTrackBase,Integral time coeff 0 for Medium nozzle (tracking),1.5,sec
+PIDIntegralMediumTrackAdjust,Integral time coeff 1 for Medium nozzle (tracking),0,sec / unit
+PIDIntegralMediumMin,Min integral time coeff - Medium nozzle,.75,sec
+PIDIntegralMediumMax,Max integral time coeff - Medium nozzle,1000,sec
+PIDGainSmallBase,Kp coeff 0 for small nozzle,.45,normalized
+PIDGainSmallAdjust,Kp coeff 1 for small nozzle,0,unit / unit
+PIDGainSmallTrackBase,Kp coeff 0 for small nozzle (tracking),.45,normalized
+PIDGainSmallTrackAdjust,Kp coeff 1 for small nozzle (tracking),0,unit / unit
+PIDGainSmallMin,Minimum PID Gain (normalized Small),.2,none
+PIDGainSmallMax,Maximum PID Gain (normalized Small),.9,none
+PIDDerivSmallBase,Deriv time coeff 0 for small nozzle,.3,sec
+PIDDerivSmallAdjust,Deriv time coeff 1 for small nozzle,0,sec
+PIDDerivSmallTrackBase,Deriv time coeff 0 for small (tracking),1,sec
+PIDDerivSmallTrackAdjust,Deriv time coeff 1 for small (tracking),0,sec
+PIDDerivSmallMin,Min derivative time coeff - Small,0,sec
+PIDDerivSmallMax,Max derivative time coeff - Small,5,sec
+PIDIntegralSmallBase,Integral time coeff 0 for small nozzle,1.3,sec
+PIDIntegralSmallAdjust,Integral time coeff 1 for small nozzle,0,sec / unit
+PIDIntegralSmallTrackBase,Integral time coeff 0 for small (tracking),1.5,sec
+PIDIntegralSmallTrackAdjust,Integral time coeff 1 for small (tracking),0,sec / unit
+PIDIntegralSmallMin,Min integral time coeff - Small,.8,sec
+PIDIntegralSmallMax,Max integral time coeff - Small,1000,sec
+PIDIntegralMaxWSRateMax,Max WS rate for Integral control during ramping Max,10,kph/sec
+PIDIntegralMaxWSRateMin,Max WS rate for Integral control during ramping Min,.15,kph/sec
+PIDIntegralMaxWSRateBase,Max WS rate for Integral control during ramping Base,3,kph/sec
+PIDIntegralMaxWSRateAdjust,Max WS rate for Integral control during ramping Adjust,0,kph/sec/nspt
+HXDeltaPRatioTC,HX DP over Q ratio filter time constant,5,sec
+HXDeltaPRatioMax,Value of HX DP / Delta P that is too high,2,none
+HXDeltaPRatioDPMin,Min DeltaP to check HX DP/Q ratio,20,Pa
+HXDeltaPMax,Value of DeltaP_HX that stops fan,999999,Pa
+IDLEFS,Maximum fan speed when idle doors can be opened, 50,rpm
+IDLEFSMIN,Min FS during idle (0=Don't start fan), 0,rpm
+DeltaPMinForWS,Min DeltaP below which windspeed = 0,3,Pa
+DeltaPMinForWSFSMax,Maximum fan speed to use Min DeltaP for WS value,5,rpm
+AutoIdleDefault,Default value of AutoIdle argument for TrackWindspeed commands,True,n/a
+AutoIdleStartWS,Windspeed value below which starts automatic idles,10,kph
+AutoIdleStopWS,Windspeed values above which stops automatic idles,8,kph
+AutoIdleDeadband,Auto Idle Start/Stop deadband value,1,kph
+TrackParDefault,Default parameter to track,DynoSpeed,n/a
+SPEEDLIMIT2,Fan speed limit 2 (idle city 30kph), 90,rpm
+TurnOffFanTime,Time for TrunOff Fan Drive and Aux when Fanspeed zero,1800,sec
+FanRunTimeWithoutCooling,Max time that the fan can run without cooling,120,sec
+TrackDyTarget,If True then when tracking dyno speed follow the dyno speed target if dyno or throttle is controlling speed,False,
+TrackDyTargetUseTrackCoeffs,If True then when auto following the dyno speed target use tracking PID coeffs instead of Auto mode coeffs,False,
+AutoIdleUsesLimit1,If True then use the MainFanSpeedLimit1Control command bit during automatic idles,True,
+FanspeedMinAutoMode,Minimum fan speed used during windspeed control,-300,rpm
+FanspeedMaxLimit1,Max allowable fanspeed when limit1 is in effect,90,rpm
+FanspeedMaxLimit2,Max allowable fanspeed when limit2 is in effect,150,rpm
+FanspeedMaxLimit3,Max allowable fanspeed when limit3 is in effect,350,rpm
+PIDWindspeedMinDelay,Delay before enforcing Minimum windspeed for feedback ctl,20,sec
+IdleFanSpeed,Default fan speed to use during idles (0=Don't start fan),50,rpm
+IdlePermComponents,List of inputs and their fault values that make up MFPerm,"",n/a
+MFAuxPermComponents,List of inputs and their fault values that make up MFAuxPerm,"",n/a
+DeltaPFilterSlowErrorSmall,WS error value to start slow filter (Small Nozzle),2,kph
+IdleReversePauseTime,Time pause when changing idle movement directions,5,sec
+FFReverseWindspeed,Nom windspeed for reverse flow,-24,kph
+FFReverseFanspeed,Nom fanspeed for reverse flow,-250,rpm
+ForceWSZeroTime,If speed target is held to zero for this duration then force Windspeed value to zero (-1 to disable), 120,seconds
+SetptRampMethod,"Method to use to adjust the setpoint near the target (0=None,1=CloseTime,2=Snap)",2,
+PIDDerivUseTgtErrorLimit,"When the windspeed is within this value of the target use the target error for deriv term,3.0,kph
+FinalRampDeltaSpeed,When Windspeed is within this value of the target perform the final ramp in FinalRampDeltaTime seconds,2,kph
+FinalRampDeltaTime,Do the final close ramp to the target in this time period,10,sec
+FinalRampSnap,If True then snap the setpoint to the target when close and the Windspeed starts coming back to the setpoint,True,
+FinalRampUseSetpt,"If True then use the setpoint for the FinalRampDeltaSpeed comparison (False=Use actual WS)",False,
+FinalRampMinWSRate,Perform Final Ramp checks and logic for windspeed ramping using rates greater than this value,3,kph/s
+FinalRampSnapBumpless,If True then keep the control output bumpless when the final setpoint is snapped,True,
+DeltaPFilterSmallFastTrack,Fast windspeed filter time const tracking (small nozzle),1.0,sec
+DeltaPFilterMediumFastTrack,Fast windspeed filter time const tracking (medium nozzle),1.0,sec
+DeltaPFilterLargeFastTrack,Fast windspeed filter time const tracking (large nozzle),1.0,sec
+FinalRampDeltaSpeedSmall,When Windspeed is within this value of the target perform the final ramp in FinalRampDeltaTimeSmall seconds (small nozzle),2,kph
+FinalRampDeltaTimeSmall,Do the final close ramp to the target in this time period (small nozzle),10,sec
+FinalRampSnapDelayTime,Min time to use final ramping before it can be snapped to final target,2,sec
+FinalRampSnapUseErrorMax,If True then limit the error to PIDErrorMax after the setpoint has been snapped,False,
+UseTuningPars,If True then output additional internal tuning values as optional parameters,False,
+FinalRampUseErrorMax,If True then limit the error to PIDErrorMax after changing to the final ramp rate,False,
+FinalRampDSNum,Number of ramp rate specific Delta Speed curves,4,
+FinalRampDS01Rate,Ramp rate for the Delta Speed Curve,5,kph/s
+FinalRampDS01Base,Delta Speed = Base + Adj(Delta Tgt) Base value,16,kph
+FinalRampDS01Adj,Delta Speed = Base + Adj(Delta Tgt) Adjust value,0,kph/kph
+FinalRampDS01Min,Delta Speed = Base + Adj(Delta Tgt) Min value,5,kph
+FinalRampDS01Max,Delta Speed = Base + Adj(Delta Tgt) Max value,30,kph
+FinalRampDS02Rate,Ramp rate for the Delta Speed Curve,8,kph/s
+FinalRampDS02Base,Delta Speed = Base + Adj(Delta Tgt) Base value,16,kph
+FinalRampDS02Adj,Delta Speed = Base + Adj(Delta Tgt) Adjust value,0,kph/kph
+FinalRampDS02Min,Delta Speed = Base + Adj(Delta Tgt) Min value,5,kph
+FinalRampDS02Max,Delta Speed = Base + Adj(Delta Tgt) Max value,30,kph
+FinalRampDS03Rate,Ramp rate for the Delta Speed Curve,10,kph/s
+FinalRampDS03Base,Delta Speed = Base + Adj(Delta Tgt) Base value,16,kph
+FinalRampDS03Adj,Delta Speed = Base + Adj(Delta Tgt) Adjust value,0,kph/kph
+FinalRampDS03Min,Delta Speed = Base + Adj(Delta Tgt) Min value,5,kph
+FinalRampDS03Max,Delta Speed = Base + Adj(Delta Tgt) Max value,30,kph
+FinalRampDS04Rate,Ramp rate for the Delta Speed Curve,12,kph/s
+FinalRampDS04Base,Delta Speed = Base + Adj(Delta Tgt) Base value,16,kph
+FinalRampDS04Adj,Delta Speed = Base + Adj(Delta Tgt) Adjust value,10,kph/kph
+FinalRampDS04Min,Delta Speed = Base + Adj(Delta Tgt) Min value,5,kph
+FinalRampDS04Max,Delta Speed = Base + Adj(Delta Tgt) Max value,30,kph
+WSCoeffsFileLarge,"Name of WS coefficients file to use for Large nozzle (no path, located in control constants folder)",WS Coefficients - CWT - Large Nozzle.xlsx,
+WSCoeffsFileMedium,"Name of WS coefficients file to use for Medium nozzle (no path, located in control constants folder)",WS Coefficients - CWT - Medium Nozzle.xlsx,
+WSCoeffsFileSmall,"Name of WS coefficients file to use for Small nozzle (no path, located in control constants folder)",WS Coefficients - CWT - Small Nozzle.xlsx,
+WindspeedRampMaxLowSpeed,Max windspeed ramp rate at low speeds (to prevent fan stalling),2,kph/s
+FanspeedSlowRamp,Fanspeed value below which the windspeed ramp rate is limited to WindspeedRampMaxLowSpeed to prevent stalling,25,rpm
+OverflowFlap01Open,If True then Overflow flap #1 is open during normal operations,False,
+OverflowFlap02Open,If True then Overflow flap #2 is open during normal operations,False,
+OverflowFlap03Open,If True then Overflow flap #3 is open during normal operations,False,
+OverflowFlap04Open,If True then Overflow flap #4 is open during normal operations,False,
+OverflowFlap05Open,If True then Overflow flap #5 is open during normal operations,False,
+OverflowFlap06Open,If True then Overflow flap #6 is open during normal operations,False,
+OverflowFlap07Open,If True then Overflow flap #7 is open during normal operations,True,
+OverflowFlap08Open,If True then Overflow flap #8 is open during normal operations,True,
+OverflowFlap09Open,If True then Overflow flap #9 is open during normal operations,True,
+OverflowFlap10Open,If True then Overflow flap #10 is open during normal operations,True,
+OverflowFlap11Open,If True then Overflow flap #11 is open during normal operations,True,
+OverflowFlap12Open,If True then Overflow flap #12 is open during normal operations,True,
+OverflowFlap13Open,If True then Overflow flap #13 is open during normal operations,False,
+OverflowFlap14Open,If True then Overflow flap #14 is open during normal operations,False,
+OverflowFlap15Open,If True then Overflow flap #15 is open during normal operations,False,
+OverflowFlap16Open,If True then Overflow flap #16 is open during normal operations,False,
+OverflowFlap17Open,If True then Overflow flap #17 is open during normal operations,False,
+OverflowFlap18Open,If True then Overflow flap #18 is open during normal operations,False,
+OverflowFlapPurgeOpen,If True then all Overflow flaps are opened during a purge,True,
+NozzleTimeout,Max time to change nozzle size,300,sec
+CFLeft1Min,Collector Flap Left1 Minimum position,0,%
+CFLeft1Max,Collector Flap Left1 Maximum position,100,%
+CFLeft2Min,Collector Flap Left2 Minimum position,0,%
+CFLeft2Max,Collector Flap Left2 Maximum position,100,%
+CFRight1Min,Collector Flap Right1 Minimum position,0,%
+CFRight1Max,Collector Flap Right1 Maximum position,100,%
+CFRight2Min,Collector Flap Right2 Minimum position,0,%
+CFRight2Max,Collector Flap Right2 Maximum position,100,%
+CFTopMin,Collector Flap Top Minimum position,0,%
+CFTopMax,Collector Flap Top Maximum position,100,%
+CFHoldTime,Time after the position has been achieved to still keep the move command on,5,sec
+CFTimeout,Maximum amount to time to move a collector flap before declaring a timeout,300,sec
+CFTolerance,Collection flap position achieved tolerance,1,%
+

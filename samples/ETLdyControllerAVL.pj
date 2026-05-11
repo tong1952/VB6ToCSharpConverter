@@ -1,0 +1,24 @@
+--MKS Project--
+$Revision: 1.2 $
+_mks_uid="vc2C6E-53B116DD"
+EndOptions
+$(projectdir)/CarrVeh.cls a 1.1 
+$(projectdir)/CommandComInfo.cls a 1.1 
+$(projectdir)/CommandComInfos.cls a 1.1 
+$(projectdir)/Control.frm a 1.1 
+$(projectdir)/Control.frx a 1.2 
+$(projectdir)/Controller.cls a 1.12 
+$(projectdir)/DYControl.Bas a 1.5 
+$(projectdir)/DYController.res a 1.2 
+$(projectdir)/Dyno.ico a 1.1 
+$(projectdir)/DynoCommands.cls a 1.6 
+$(projectdir)/DynoCommandsC1.cls a 1.2 
+$(projectdir)/DynoCommandsC4.cls a 1.2 
+$(projectdir)/ETLdyControllerAVL.exe a 1.12 
+$(projectdir)/ETLdyControllerAVL.vbp a 1.15 
+$(projectdir)/ETLdyControllerAVLDefaultsC1.csv a 1.1 
+$(projectdir)/ETLdyControllerAVLDefaultsC4.csv a 1.3 
+$(projectdir)/Process.cls a 1.2 
+$(projectdir)/ReACTLib6.bas a 1.1 
+$(projectdir)/SocketPoll.cls a 1.2 
+$(projectdir)/"VECON - ReAct Interface - Rev. 1.6.pdf" a 1.1 

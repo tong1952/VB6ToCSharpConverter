@@ -1,0 +1,4 @@
+﻿Parser warnings for Person.cls
+Date: 2026-05-11 02:55
+
+  Line 21: expected As in Name, got 'mName'

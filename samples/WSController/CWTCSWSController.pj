@@ -1,0 +1,17 @@
+--MKS Project--
+$Revision: 4.20 $
+_mks_uid="vc5240-5CB665B9"
+EndOptions
+$(projectdir)/Control.frm a 1.2 
+$(projectdir)/Control.frx a 1.2 
+$(projectdir)/Controller.cls a 1.25 
+$(projectdir)/CWTCSWsController.exe a 1.24 
+$(projectdir)/CWTCSWSController.vbp a 1.25 
+$(projectdir)/CWTCSWSControllerDefaults.csv a 1.10 
+$(projectdir)/Process.cls a 1.2 
+$(projectdir)/Windspeed.ico a 1.2 
+$(projectdir)/WindspeedCommandsAAWT.cls a 1.5 
+$(projectdir)/WindspeedCommandsCWT.cls a 1.7 
+$(projectdir)/WsCommands.cls a 1.9 
+$(projectdir)/WsControl.Bas a 1.13 
+$(projectdir)/wsController.res a 1.10 
