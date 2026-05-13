@@ -84,7 +84,8 @@ public record VB6Declarator(
     string Name,
     VB6TypeRef? Type,
     bool IsArray,
-    List<VB6Expression>? Dimensions);
+    List<VB6Expression>? Dimensions,
+    bool IsWithEvents = false);
 
 // ─── Type reference ────────────────────────────────────────────────────────
 

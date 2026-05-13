@@ -41,7 +41,10 @@ public static class ConversionEngine
         using var workspace = new AdhocWorkspace();
         var formatted = Formatter.Format(compilationUnit, workspace).ToFullString();
 
-        return (header + formatted, parser.Diagnostics);
+        var diagnostics = new List<string>(parser.Diagnostics);
+        diagnostics.AddRange(transformer.Diagnostics);
+        diagnostics.AddRange(DetectComPatterns(tokens));
+        return (header + formatted, diagnostics);
     }
 
     // Converts one file; calls log(message) after each file with a status line.
@@ -85,6 +88,31 @@ public static class ConversionEngine
     }
 
     // ─── Helpers ──────────────────────────────────────────────────────────
+
+    private static readonly (TokenKind Kind, string? Text, string Message)[] ComPatterns =
+    [
+        // Implements: fully converted to a C# base type — no warning needed.
+        // WithEvents: handled by the transformer; unmatched vars reported via transformer diagnostics.
+        (TokenKind.Identifier,  "GetObject",     "Note: GetObject — COM moniker binding; replace with an appropriate .NET API"),
+    ];
+
+    private static IEnumerable<string> DetectComPatterns(List<Token> tokens)
+    {
+        var seen = new HashSet<string>(); // one warning per pattern per file
+        for (int i = 0; i < tokens.Count; i++)
+        {
+            var tok = tokens[i];
+            foreach (var (kind, text, message) in ComPatterns)
+            {
+                if (tok.Kind != kind) continue;
+                if (text != null && !string.Equals(tok.Text, text, StringComparison.OrdinalIgnoreCase)) continue;
+                // Skip identifiers that are method calls on an object (obj.GetObject)
+                if (i > 0 && tokens[i - 1].Kind == TokenKind.Dot) continue;
+                if (seen.Add(message))
+                    yield return $"Line {tok.Line}: {message}";
+            }
+        }
+    }
 
     // If the source is an RCS file, extract only the head revision's VB6 source.
     // RCS files start with "head\t" and embed each revision's text in @...@ blocks.
@@ -133,7 +161,7 @@ public static class ConversionEngine
     private static void WriteLog(string logPath, string inputPath, IReadOnlyList<string> diagnostics)
     {
         var sb = new StringBuilder();
-        sb.AppendLine($"Parser warnings for {Path.GetFileName(inputPath)}");
+        sb.AppendLine($"Conversion notes for {Path.GetFileName(inputPath)}");
         sb.AppendLine($"Date: {DateTime.Now:yyyy-MM-dd HH:mm}");
         sb.AppendLine();
         foreach (var d in diagnostics)

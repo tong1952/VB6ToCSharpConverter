@@ -19,6 +19,12 @@ public class VB6ToCSharpTransformer(string namespaceName = "Converted")
     // Name of the current function being parsed (for VB6 "FuncName = val" returns)
     private string _currentFunctionName = "";
 
+    // WithEvents event subscriptions to inject into Class_Initialize (or a constructor)
+    private List<StatementSyntax> _pendingEventSubscriptions = [];
+    private bool _hasClassInitialize = false;
+
+    public List<string> Diagnostics { get; } = [];
+
     // Return type of the current function (used to emit __result local)
     private TypeSyntax? _currentReturnType;
 
@@ -27,6 +33,9 @@ public class VB6ToCSharpTransformer(string namespaceName = "Converted")
 
     // Name of the exception variable in generated catch blocks
     private const string CatchVar = "ex";
+
+    // Counter for unique temporary variable names
+    private int _tempSeq;
 
     // ─── Entry point ──────────────────────────────────────────────────────
 
@@ -45,12 +54,14 @@ public class VB6ToCSharpTransformer(string namespaceName = "Converted")
 
         var classDecl = BuildClass(module);
 
-        var ns = FileScopedNamespaceDeclaration(ParseName(namespaceName))
-            .WithMembers(SingletonList<MemberDeclarationSyntax>(classDecl));
+        MemberDeclarationSyntax topLevel = string.IsNullOrWhiteSpace(namespaceName)
+            ? classDecl
+            : FileScopedNamespaceDeclaration(ParseName(namespaceName))
+                .WithMembers(SingletonList<MemberDeclarationSyntax>(classDecl));
 
         return CompilationUnit()
             .WithUsings(usings)
-            .WithMembers(SingletonList<MemberDeclarationSyntax>(ns))
+            .WithMembers(SingletonList(topLevel))
             .NormalizeWhitespace();
     }
 
@@ -58,12 +69,24 @@ public class VB6ToCSharpTransformer(string namespaceName = "Converted")
 
     private ClassDeclarationSyntax BuildClass(VB6Module module)
     {
+        _pendingEventSubscriptions = BuildEventSubscriptions(module);
+        _hasClassInitialize = false;
+
         var members = new List<MemberDeclarationSyntax>();
 
         foreach (var m in module.Members)
         {
             var converted = TransformMember(m);
             if (converted != null) members.Add(converted);
+        }
+
+        // If there are WithEvents subscriptions but no Class_Initialize, emit a constructor
+        if (_pendingEventSubscriptions.Count > 0 && !_hasClassInitialize)
+        {
+            var ctor = ConstructorDeclaration(TypeMapper.SanitizeName(module.Name))
+                .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword)))
+                .WithBody(Block(List(_pendingEventSubscriptions)));
+            members.Insert(0, ctor);
         }
 
         var modifiers = module.Kind == ModuleKind.Standard
@@ -127,12 +150,112 @@ public class VB6ToCSharpTransformer(string namespaceName = "Converted")
     private MethodDeclarationSyntax TransformSub(SubDecl sd)
     {
         _currentFunctionName = "";
-        var body = Block(List(TransformMethodStatements(sd.Body)));
+        var bodyStmts = TransformMethodStatements(sd.Body).ToList();
+
+        if (string.Equals(sd.Name, "Class_Initialize", StringComparison.OrdinalIgnoreCase)
+            && _pendingEventSubscriptions.Count > 0)
+        {
+            _hasClassInitialize = true;
+            bodyStmts.InsertRange(0, _pendingEventSubscriptions);
+        }
+
+        var body = Block(List(bodyStmts));
         return MethodDeclaration(PredefinedType(Token(SyntaxKind.VoidKeyword)),
                 TypeMapper.SanitizeName(sd.Name))
             .WithModifiers(BuildModifiers(sd.Access, sd.IsStatic))
             .WithParameterList(BuildParams(sd.Parameters))
             .WithBody(body);
+    }
+
+    // Recursively yields every statement in a body, descending into all nested blocks.
+    private static IEnumerable<VB6Statement> FlattenStmts(IEnumerable<VB6Statement> stmts)
+    {
+        foreach (var s in stmts)
+        {
+            yield return s;
+            IEnumerable<VB6Statement> children = s switch
+            {
+                IfStmt ifs      => ifs.Then
+                                    .Concat(ifs.ElseIfs.SelectMany(e => e.Body))
+                                    .Concat(ifs.Else ?? []),
+                ForStmt fs      => fs.Body,
+                ForEachStmt fes => fes.Body,
+                WhileStmt ws    => ws.Body,
+                DoStmt ds       => ds.Body,
+                WithStmt wts    => wts.Body,
+                SelectStmt ss   => ss.Cases.SelectMany(c => c.Body)
+                                    .Concat(ss.ElseBody ?? []),
+                _               => []
+            };
+            foreach (var child in FlattenStmts(children))
+                yield return child;
+        }
+    }
+
+    // Returns the set of WithEvents variable names that use "Set varName.Notify = Me"
+    // (COM sink pattern) anywhere in the module body — these don't need += wiring.
+    private static HashSet<string> FindNotifySinkVars(VB6Module module)
+    {
+        var sinks = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var allStmts = FlattenStmts(
+            module.Members.OfType<SubDecl>().SelectMany(s => s.Body)
+            .Concat(module.Members.OfType<FunctionDecl>().SelectMany(f => f.Body)));
+        foreach (var stmt in allStmts)
+            if (stmt is AssignStmt { IsSet: true, Value: MeExpr,
+                    Target: MemberExpr { Object: NameExpr objExpr } })
+                sinks.Add(objExpr.Name);
+        return sinks;
+    }
+
+    private List<StatementSyntax> BuildEventSubscriptions(VB6Module module)
+    {
+        var result = new List<StatementSyntax>();
+
+        var withEventsVars = module.Members
+            .OfType<FieldDecl>()
+            .SelectMany(f => f.Declarators)
+            .Where(d => d.IsWithEvents)
+            .Select(d => d.Name)
+            .ToList();
+
+        if (withEventsVars.Count == 0) return result;
+
+        var handlerNames = module.Members
+            .OfType<SubDecl>()
+            .Select(s => s.Name)
+            .ToList();
+
+        var notifySinks = FindNotifySinkVars(module);
+
+        foreach (var varName in withEventsVars)
+        {
+            string prefix = varName + "_";
+            var matched = new List<StatementSyntax>();
+            foreach (var handlerName in handlerNames)
+            {
+                if (!handlerName.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) continue;
+                string eventName = handlerName[prefix.Length..];
+                matched.Add(ExpressionStatement(
+                    AssignmentExpression(
+                        SyntaxKind.AddAssignmentExpression,
+                        MemberAccessExpression(SyntaxKind.SimpleMemberAccessExpression,
+                            IdentifierName(varName),
+                            IdentifierName(eventName)),
+                        IdentifierName(handlerName))));
+            }
+
+            if (matched.Count > 0)
+                result.AddRange(matched);
+            else if (!notifySinks.Contains(varName))
+            {
+                result.Add(EmptyStatement()
+                    .WithLeadingTrivia(TriviaList(
+                        Comment($"// TODO: {varName}.??? += {varName}_???;"),
+                        EndOfLine(Environment.NewLine))));
+            }
+        }
+
+        return result;
     }
 
     // Function → typed method (VB6 "FuncName = val" → local __result + return __result)
@@ -543,7 +666,7 @@ public class VB6ToCSharpTransformer(string namespaceName = "Converted")
                 break;
 
             case AssignStmt ass:
-                yield return TransformAssign(ass);
+                foreach (var s in TransformAssignStmt(ass)) yield return s;
                 break;
 
             case CallStmt cs when IsErrMethod(cs.Target, "Raise"):
@@ -820,6 +943,40 @@ public class VB6ToCSharpTransformer(string namespaceName = "Converted")
             .WithModifiers(TokenList(Token(SyntaxKind.ConstKeyword)));
     }
 
+    private IEnumerable<StatementSyntax> TransformAssignStmt(AssignStmt ass)
+    {
+        // target = CreateObject("ProgID") → two-statement COM expansion
+        if (ass.Value is CallExpr { Target: NameExpr { Name: var coName }, Arguments: var coArgs }
+            && coName.Equals("CreateObject", StringComparison.OrdinalIgnoreCase)
+            && coArgs.Count >= 1)
+        {
+            string tmpName = $"__comType{(++_tempSeq == 1 ? "" : _tempSeq.ToString())}";
+            var progId     = TransformExpr(coArgs[0]);
+            var typeLocal  = LocalDeclarationStatement(
+                VariableDeclaration(IdentifierName("Type"))
+                    .WithVariables(SingletonSeparatedList(
+                        VariableDeclarator(tmpName)
+                            .WithInitializer(EqualsValueClause(
+                                InvocationExpression(
+                                    MemberAccessExpression(SyntaxKind.SimpleMemberAccessExpression,
+                                        IdentifierName("Type"), IdentifierName("GetTypeFromProgID")))
+                                .WithArgumentList(ArgumentList(SingletonSeparatedList(Argument(progId)))))))));
+
+            var activate = InvocationExpression(
+                MemberAccessExpression(SyntaxKind.SimpleMemberAccessExpression,
+                    IdentifierName("Activator"), IdentifierName("CreateInstance")))
+                .WithArgumentList(ArgumentList(SingletonSeparatedList(Argument(IdentifierName(tmpName)))));
+
+            yield return typeLocal;
+            yield return ExpressionStatement(
+                AssignmentExpression(SyntaxKind.SimpleAssignmentExpression,
+                    TransformExpr(ass.Target), activate));
+            yield break;
+        }
+
+        yield return TransformAssign(ass);
+    }
+
     private ExpressionStatementSyntax TransformAssign(AssignStmt ass)
     {
         // VB6 "FuncName = value" sets the function's return value → assign to __result
@@ -1043,6 +1200,12 @@ public class VB6ToCSharpTransformer(string namespaceName = "Converted")
         return expr switch
         {
             LiteralExpr le => TransformLiteral(le),
+            NameExpr ne when ne.Name.Equals("vbObjectError", StringComparison.OrdinalIgnoreCase) =>
+                CastExpression(
+                    PredefinedType(Token(SyntaxKind.IntKeyword)),
+                    CheckedExpression(SyntaxKind.UncheckedExpression,
+                        LiteralExpression(SyntaxKind.NumericLiteralExpression,
+                            Literal("0x80040000", unchecked((int)0x80040000))))),
             NameExpr ne => IdentifierName(TypeMapper.SanitizeName(ne.Name)),
             MeExpr => ThisExpression(),
             // Err.Number / Err.Description / Err.Source → caught exception properties
@@ -1156,10 +1319,10 @@ public class VB6ToCSharpTransformer(string namespaceName = "Converted")
                     Literal(le.Value?.ToString() ?? "")),
             LiteralKind.Integer =>
                 LiteralExpression(SyntaxKind.NumericLiteralExpression,
-                    Literal(Convert.ToInt16(le.Value))),
+                    Literal(unchecked((short)Convert.ToInt64(le.Value)))),
             LiteralKind.Long =>
                 LiteralExpression(SyntaxKind.NumericLiteralExpression,
-                    Literal(Convert.ToInt32(le.Value))),
+                    Literal(unchecked((int)Convert.ToInt64(le.Value)))),
             LiteralKind.Single =>
                 LiteralExpression(SyntaxKind.NumericLiteralExpression,
                     Literal(Convert.ToSingle(le.Value))),

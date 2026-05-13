@@ -366,7 +366,9 @@ public class VB6Lexer(string source)
     {
         var sb = new StringBuilder();
         while (char.IsLetterOrDigit(Current) || Current == '_') sb.Append(Advance());
-        if (Current is '%' or '&' or '!' or '#' or '$' or '@') Advance(); // type-declaration char
+        // '!' followed by a letter/underscore is the bang operator (obj!Member), not a type suffix
+        if (Current is '!' && (char.IsLetter(PeekAt(1)) || PeekAt(1) == '_')) { /* leave for parser */ }
+        else if (Current is '%' or '&' or '!' or '#' or '$' or '@') Advance(); // type-declaration char
         var text = sb.ToString();
         if (Keywords.TryGetValue(text, out var kw))
             return MakeAt(kw, text, null, line, col);

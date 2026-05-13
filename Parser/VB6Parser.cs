@@ -703,6 +703,24 @@ public class VB6Parser(List<Token> tokens)
             mode = Current.Text;
             Advance();
         }
+        // Optional: Access Read|Write|Read Write  (skip)
+        if (Current.Kind == TokenKind.Identifier &&
+            string.Equals(Current.Text, "Access", StringComparison.OrdinalIgnoreCase))
+        {
+            Advance(); // Access
+            while (Current.Kind == TokenKind.Identifier &&
+                   Current.Text is not "As" and not "Lock" &&
+                   Current.Kind != TokenKind.As) Advance();
+        }
+        // Optional: Lock Read|Write|Read Write|Shared  (skip)
+        if (Current.Kind == TokenKind.Identifier &&
+            string.Equals(Current.Text, "Lock", StringComparison.OrdinalIgnoreCase))
+        {
+            Advance(); // Lock
+            while (Current.Kind == TokenKind.Identifier &&
+                   !string.Equals(Current.Text, "As", StringComparison.OrdinalIgnoreCase))
+                Advance();
+        }
         Consume(TokenKind.As, "Open");
         var fileNum = ParseFileNumber();
         // Optional: Len = n
@@ -909,7 +927,7 @@ public class VB6Parser(List<Token> tokens)
 
     private VB6Declarator ParseDeclarator()
     {
-        Match(TokenKind.WithEvents);
+        bool isWithEvents = Match(TokenKind.WithEvents);
         string name = ExpectIdent();
         bool isArray = false;
         List<VB6Expression>? dims = null;
@@ -934,7 +952,7 @@ public class VB6Parser(List<Token> tokens)
             type = ParseTypeRef();
         }
 
-        return new VB6Declarator(name, type, isArray, dims);
+        return new VB6Declarator(name, type, isArray, dims, IsWithEvents: isWithEvents);
     }
 
     // ─── Parameters ───────────────────────────────────────────────────────
@@ -1224,6 +1242,8 @@ public class VB6Parser(List<Token> tokens)
             }
             else
             {
+                // ByVal/ByRef before an argument (DLL call convention) — skip the keyword
+                if (Current.Kind is TokenKind.ByVal or TokenKind.ByRef) Advance();
                 // Named argument: name:=expr — skip name and :=
                 // (name may be a keyword used as an argument name, e.g. Module:=, FileName:=)
                 if ((Current.Kind == TokenKind.Identifier || IsKeywordAsIdent(Current.Kind))
