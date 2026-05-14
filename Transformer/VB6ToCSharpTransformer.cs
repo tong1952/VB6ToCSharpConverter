@@ -448,9 +448,33 @@ public class VB6ToCSharpTransformer(string namespaceName = "Converted")
             .WithMembers(SeparatedList(members));
     }
 
+    private static readonly HashSet<string> WindowsOnlyDlls = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "kernel32", "kernel32.dll",
+        "user32",   "user32.dll",
+        "advapi32", "advapi32.dll",
+        "gdi32",    "gdi32.dll",
+        "ole32",    "ole32.dll",
+        "oleaut32", "oleaut32.dll",
+        "shell32",  "shell32.dll",
+        "ntdll",    "ntdll.dll",
+        "winmm",    "winmm.dll",
+        "comctl32", "comctl32.dll",
+        "comdlg32", "comdlg32.dll",
+        "ws2_32",   "ws2_32.dll",
+        "winspool", "winspool.drv",
+        "msvbvm60", "msvbvm60.dll",
+    };
+
+    private readonly HashSet<string> _warnedDlls = new(StringComparer.OrdinalIgnoreCase);
+
     // Declare → DllImport extern method
     private MethodDeclarationSyntax TransformDeclare(DeclareDecl dd)
     {
+        if (WindowsOnlyDlls.Contains(dd.Lib) && _warnedDlls.Add(dd.Lib))
+            Diagnostics.Add(
+                $"Note: [DllImport(\"{dd.Lib}\")] — Windows-only API; not portable to Linux");
+
         var retType = dd.ReturnType != null
             ? TypeMapper.ToCSharp(dd.ReturnType.Name)
             : PredefinedType(Token(SyntaxKind.VoidKeyword));

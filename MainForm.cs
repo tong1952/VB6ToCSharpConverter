@@ -34,7 +34,7 @@ internal sealed class MainForm : Form
 
         _inputFolderBox  = new TextBox();
         _outputFolderBox = new TextBox();
-        _namespaceBox    = new TextBox { Text = "Converted" };
+        _namespaceBox    = new TextBox();
         _namespaceBox.Enter += (_, _) => BeginInvoke(() => _namespaceBox.SelectAll());
 
         _fileList = new CheckedListBox
@@ -222,19 +222,17 @@ internal sealed class MainForm : Form
 
     private void BrowseInputFolder()
     {
-        using var dlg = new OpenFileDialog
+        using var dlg = new FolderBrowserDialog
         {
-            Title            = "Select any VB6 file in the source folder",
-            Filter           = "VB6 Files (*.bas;*.cls;*.ctl;*.pag)|*.bas;*.cls;*.ctl;*.pag|All Files (*.*)|*.*",
-            Multiselect      = false,
-            CheckFileExists  = false,
-            InitialDirectory = Directory.Exists(_inputFolderBox.Text) ? _inputFolderBox.Text : string.Empty,
+            Description            = "Select folder containing VB6 source files",
+            UseDescriptionForTitle = true,
         };
+        if (Directory.Exists(_inputFolderBox.Text))
+            dlg.InitialDirectory = _inputFolderBox.Text;
         if (dlg.ShowDialog(this) != DialogResult.OK) return;
 
-        string folder = Path.GetDirectoryName(dlg.FileName)!;
-        _inputFolderBox.Text = folder;
-        PopulateFileList(folder, dlg.FileName);
+        _inputFolderBox.Text = dlg.SelectedPath;
+        PopulateFileList(dlg.SelectedPath);
     }
 
     private void BrowseOutputFolder()
