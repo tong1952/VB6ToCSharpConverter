@@ -264,8 +264,7 @@ internal sealed class MainForm : Form
             _fileList.Items.Add(f, isChecked: check);
         }
 
-        if (!Directory.Exists(_outputFolderBox.Text))
-            _outputFolderBox.Text = Path.Combine(folder, "cs_output");
+        _outputFolderBox.Text = Path.Combine(folder, "cs_output");
     }
 
     private void SetAllChecked(bool value)
